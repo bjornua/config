@@ -4,9 +4,11 @@ colorscheme wombat
 inoremap <F1> <ESC>:FufBuffer<CR>
 inoremap <F2> <ESC>:FufFile **/<CR>
 inoremap <F3> <ESC>:FufDir<CR>
+inoremap <F4> <ESC>:!urxvtc<CR><CR>
 noremap  <F1> :FufBuffer<CR>
 noremap  <F2> :FufFile **/<CR>
 noremap  <F3> :FufDir<CR>
+noremap  <F4> :!urxvtc<CR><CR>
 set autoindent
 set autoread
 set background=dark
