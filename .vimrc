@@ -14,7 +14,7 @@ noremap  <F5> :g/^\s*$/d<CR>
 set autoindent
 set autoread
 set background=dark
-set guifont=DejaVu\ Sans\ Mono\ 11
+set guifont=Inconsolata\ Medium\ 12
 set hidden
 set history=5000
 set hlsearch
