@@ -43,4 +43,4 @@ bindkey "\eOc" forward-word # Ctrl+Right
 bindkey "\eOd" backward-word # Ctrl+Left
 bindkey "^R" history-incremental-search-backward # Ctrl+R
 bindkey "\b" backward-kill-word
-
+export EDITOR=vim

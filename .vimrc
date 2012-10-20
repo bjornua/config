@@ -4,17 +4,19 @@ colorscheme wombat
 inoremap <F1> <ESC>:FufBuffer<CR>
 inoremap <F2> <ESC>:FufFile **/<CR>
 inoremap <F3> <ESC>:FufDir<CR>
-inoremap <F4> <ESC>:!urxvtc<CR><CR>
+inoremap <F4> <ESC>:FufRenewCache<CR>
 inoremap <F5> <ESC>:g/^\s*$/d<CR>
+inoremap <F6> <ESC>:!urxvtc<CR><CR>
 noremap  <F1> :FufBuffer<CR>
 noremap  <F2> :FufFile **/<CR>
 noremap  <F3> :FufDir<CR>
-noremap  <F4> :!urxvtc<CR><CR>
+noremap  <F4> :FufRenewCache<CR>
 noremap  <F5> :g/^\s*$/d<CR>
+noremap  <F6> :!urxvtc<CR><CR>
 set autoindent
 set autoread
 set background=dark
-set clipboard=unnamedplus
+set clipboard=unnamedplus,unnamed
 set guifont=Inconsolata-g\ Medium\ 12
 set hidden
 set history=5000
