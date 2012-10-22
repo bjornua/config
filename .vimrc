@@ -37,6 +37,7 @@ set showmode
 set softtabstop=4
 set tabstop=8
 set wildmode=list:longest
+set clipboard=unnamedplus
 set wrap
 set expandtab
 syntax on
