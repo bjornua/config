@@ -14,7 +14,8 @@ noremap  <F5> :g/^\s*$/d<CR>
 set autoindent
 set autoread
 set background=dark
-set guifont=Inconsolata\ Medium\ 12
+set clipboard=unnamedplus
+set guifont=Inconsolata-g\ Medium\ 12
 set hidden
 set history=5000
 set hlsearch
@@ -37,7 +38,6 @@ set showmode
 set softtabstop=4
 set tabstop=8
 set wildmode=list:longest
-set clipboard=unnamedplus
 set wrap
 set expandtab
 syntax on
