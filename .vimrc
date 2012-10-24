@@ -44,3 +44,4 @@ set wrap
 set expandtab
 syntax on
 set guioptions-=T guioptions-=m guioptions-=l guioptions-=r guioptions-=b
+let g:fuf_file_exclude = '\v\~$|/$|\.(pyc|png|jpg|woff)$|(^|/)\.(hg|git|bzr)($|/)'
