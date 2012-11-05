@@ -88,7 +88,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_n     ), refresh)
 
     -- Move focus to the next window
-    , ((mod1Mask,               xK_Tab   ), windows W.focusDown)
+    , ((modm,               xK_Tab   ), windows W.focusDown)
 
     -- Move focus to the next window
     , ((modm,               xK_j     ), windows W.focusDown)
@@ -188,7 +188,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 myLayout = avoidStruts $ smartBorders $ grid ||| Full
   where
      
-     grid = GridRatio (4/3)
+     grid = GridRatio 1
 
      -- default tiling algorithm partitions the screen into two panes
      tiled   = spacing 4 $ Tall nmaster delta ratio

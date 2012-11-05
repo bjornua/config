@@ -1,0 +1,40 @@
+Config { font = "xft:Inconsolata-9:bold"
+       , bgColor = "black"
+       , fgColor = "grey"
+       , position = Top
+       , commands = [ 
+                      Run Weather "EKCH" 
+                                  ["-t"      , "EKCH: <tempC>°C"         , 
+                                  "-L"       , "8"                     , 
+                                  "-H"       , "20"                    , 
+                                  "--high"   , "orange"                , 
+                                  "--low"    , "lightblue"] 600
+                    , Run Network "wlan0" 
+                                  ["-L"      , "50"        , 
+                                  "-H"       , "500"       , 
+                                  "--normal" , "lightblue" , 
+                                  "--high"   , "lightgreen",
+                                  "-t"       , "Net: <rx> KbS"] 10
+                    , Run MultiCpu ["-L"       , "4"          ,
+                                    "-H"       , "50"         , 
+                                    "--normal" , "lightgreen" , 
+                                    "--high"   , "orange"] 10
+                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+                    , Run Date "%a %b %_d %H:%M" "date" 10
+                    , Run Battery ["-L"       ,"50"                         ,
+                                   "-H"       , "75"                        , 
+                                   "--high"   , "white"                     , 
+                                   "--normal" , "yellow"                    , 
+                                   "--low"    , "red"                       , 
+                                   "-t"       , "Batt: <left>%"] 10
+                    , Run CoreTemp ["-t", "<core0>°C", 
+                                    "-L", "40",
+                                    "-H", "65",
+                                    "-l", "lightblue",
+                                    "-h", "orange"] 50
+                   , Run StdinReader
+                   ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ %EKCH% <fc=#555>|</fc> %multicpu% %coretemp% <fc=#555>|</fc> %memory% <fc=#555>|</fc> %wlan0% <fc=#555>|</fc> %battery% | <fc=white>%date%</fc>"
+}
