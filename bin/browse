@@ -1,0 +1,6 @@
+#!/bin/sh
+
+DIR="`find . -xdev -type d | dmenu -i -l 20 -p thunar`" || exit
+cd "$DIR"
+
+exec thunar

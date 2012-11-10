@@ -1,7 +1,6 @@
 #!/bin/sh
 
-DIR="`find . -xdev -type d | dmenu -i -l 20 -p console`" || exit
+DIR="`find . -xdev -type d | dmenu -i -l 20 -p urxvtc`" || exit
 cd "$DIR"
-
 
 exec urxvtc
