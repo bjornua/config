@@ -69,6 +69,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch dmenu
     , ((modm,               xK_p     ), spawn "dmenu_run -p Open -l 30 -nf \"#FFF\" -nb \"#222\" -sb \"#050\"")
 
+    -- launch dmenu
+    , ((modm,               xK_o     ), spawn "console")
+
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
     

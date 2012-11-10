@@ -40,7 +40,9 @@ set guioptions-=T guioptions-=m guioptions-=l guioptions-=r guioptions-=b
 
 " Strip the newline from the end of a string
 function! Chomp(str)
-  return substitute(a:str, '\n$', '', '')
+  let str = substitute(a:str, '\n$', '', '')
+  let str = substitute(a:str, ' ', '\\ ', '')
+  return str
 endfunction
 
 " Find a file and pass it to cmd
