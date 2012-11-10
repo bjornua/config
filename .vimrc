@@ -1,23 +1,15 @@
 set nocompatible
 call pathogen#infect()
 colorscheme wombat
-inoremap <F1> <ESC>:FufBuffer<CR>
-inoremap <F2> <ESC>:FufFile **/<CR>
-inoremap <F3> <ESC>:FufDir<CR>
-inoremap <F4> <ESC>:FufRenewCache<CR>
 inoremap <F5> <ESC>:g/^\s*$/d<CR>
 inoremap <F6> <ESC>:!urxvtc<CR><CR>
-noremap  <F1> :FufBuffer<CR>
-noremap  <F2> :FufFile **/<CR>
-noremap  <F3> :FufDir<CR>
-noremap  <F4> :FufRenewCache<CR>
 noremap  <F5> :g/^\s*$/d<CR>
 noremap  <F6> :!urxvtc<CR><CR>
 set autoindent
 set autoread
 set background=dark
 set clipboard=unnamedplus,unnamed
-set guifont=Inconsolata-g\ Medium\ 12
+set guifont=Inconsolata\ Medium\ 13
 set hidden
 set history=5000
 set hlsearch
@@ -44,4 +36,31 @@ set wrap
 set expandtab
 syntax on
 set guioptions-=T guioptions-=m guioptions-=l guioptions-=r guioptions-=b
-let g:fuf_file_exclude = '\v\~$|/$|\.(pyc|png|jpg|woff)$|(^|/)\.(hg|git|bzr)($|/)'
+
+
+" Strip the newline from the end of a string
+function! Chomp(str)
+  return substitute(a:str, '\n$', '', '')
+endfunction
+
+" Find a file and pass it to cmd
+function! DmenuOpen(cmd)
+  let fname = Chomp(system("find . -type f | grep -vP '(\\/\\.git\\/|\\.(pyc|png|jpg|gif|ico)$)' | dmenu -i -l 20 -p " . a:cmd))
+  if empty(fname)
+    return
+  endif
+  execute a:cmd . " " . fname
+endfunction
+
+" Find a file and pass it to cmd
+function! DmenuOpenDir(cmd)
+  let fname = Chomp(system("find . -type d | grep -vP '\\/\\.(git|hg)(\\/|$)' | dmenu -i -l 20 -p " . a:cmd))
+  if empty(fname)
+    return
+  endif
+  execute a:cmd . " " . fname
+endfunction
+
+
+map <c-f> :call DmenuOpen("e")<cr>
+map <c-d> :call DmenuOpenDir("chdir")<cr>
