@@ -2,7 +2,7 @@
 declare -x PATH="/home/bjorn/bin:$PATH"
 autoscreen
 numlockx on
-. .fehbg
+[ -f .fehbg ] && source .fehbg
 pulseaudio --start --log-target=syslog
 urxvtd -q -f -o
 xcompmgr &
