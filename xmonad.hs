@@ -72,6 +72,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch console
     , ((modm,               xK_o     ), spawn "console")
 
+    -- launch screenshot
+    , ((0,               xK_Print ), spawn "screenshot")
+
     -- launch browse
     , ((modm .|. shiftMask, xK_o     ), spawn "browse")
     
