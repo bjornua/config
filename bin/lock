@@ -1,0 +1,4 @@
+#!/usr/bin/python -B
+import os
+
+os.execl("/usr/bin/i3lock", "/usr/bin/i3lock", "-c", "000000")

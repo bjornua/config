@@ -1,0 +1,7 @@
+#!/usr/bin/python -B
+import os
+import subprocess
+
+p = subprocess.Popen(args = ["/usr/bin/import", "-window", "root", "screenshot.png"])
+p.wait()
+os.execvp("/usr/bin/gimp", ["/usr/bin/gimp", "screenshot.png"])

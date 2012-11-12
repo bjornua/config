@@ -1,0 +1,129 @@
+#!/usr/bin/python3 -u
+import datetime
+import time
+import threading
+import collections
+import subprocess
+import re
+import pprint
+
+
+data = collections.defaultdict(str)
+dzen2 = subprocess.Popen(args = ["/usr/bin/dzen2", "-ta", "c"], stdin=subprocess.PIPE)
+
+def update():
+    bar = "%(date)s %(mem)s %(load)s %(batt)s\n" % (data)
+    dzen2.stdin.write(bar.encode())
+    dzen2.stdin.flush()
+
+def bar(progress, width = 100, height = 10, bgcolor = (60,60,60), barcolor = (255,255,255)):
+    bgcolor = "#%02x%02x%02x" % bgcolor
+    barcolor = "#%02x%02x%02x" % barcolor
+    
+    left_width = int(round(progress * width))
+    right_width = width - left_width
+    
+    bar_progress = "^fg(%s)^r(%sx%s)" % (barcolor, left_width, height)
+    bar_rest = "^fg(%s)^r(%sx%s)" % (bgcolor, right_width, height)
+
+    bar = "%s%s^fg()" % (bar_progress, bar_rest)
+    return bar
+
+
+def register_func(interval=1):
+    def decorator(f):
+        def job():
+            while True:
+                data[f.__name__] = f()
+                update()
+                time.sleep(interval)
+        threading.Thread(target=job).start()
+        return f
+    return decorator
+
+@register_func(1)
+def load():
+    with open("/proc/loadavg") as f:
+        proc = f.read().split()
+    load1 = proc[0]
+    load5 = proc[1]
+    load15 = proc[2]
+    
+    return "Load: %s %s %s" % (load1, load5, load15)
+
+capacity_matcher = re.compile(r"last full capacity: *([0-9]+) mAh")
+
+charges = collections.deque(maxlen=40)
+rateavg = None
+@register_func(1)
+def batt():
+    global charges
+    global rateavg
+
+    with open("/sys/class/power_supply/BAT0/status") as f:
+        status = f.read().strip()
+    
+    with open("/sys/class/power_supply/BAT0/charge_now") as f:
+        charge = int(f.read().strip())
+    
+    with open("/sys/class/power_supply/BAT0/charge_full") as f:
+        capacity = int(f.read().strip())
+    
+    if status == "Discharging":
+        charges.append((datetime.datetime.now(), charge))
+    else:
+        charges.clear()
+    
+    if(len(charges) > 2):
+        oldcharge = charges[0]
+        newcharge = charges[-1]
+        
+        timedelta = newcharge[0] - oldcharge[0]
+        chargedelta = oldcharge[1] - newcharge[1]
+        
+        rate = chargedelta / timedelta.total_seconds()
+
+        if rate > 0:
+            if rateavg is None:
+                rateavg = rate
+            else:
+                rateavg = rateavg + (rate - rateavg) / 40
+        
+    if rateavg is None:
+        timeleft = 0
+    else:
+        timeleft = charge / rateavg
+    
+    hours = int(timeleft / 3600)
+    minutes = int(timeleft / 60 % 60)
+    
+    return "Batt: %s %.2d:%.2d %s" % (bar(charge / capacity), hours, minutes, status)
+
+@register_func(1)
+def date():
+    return datetime.datetime.now().strftime("Date: %Y-%m-%d %H:%M:%S")
+
+mem_matcher = re.compile(r"([^:\n]+): +([^ \n]+)( (.+))?")
+@register_func(1)
+def mem():
+    with open("/proc/meminfo") as f:
+        proc = f.read()
+    
+    memtotal = 0
+    memfree = 0
+    memcached = 0
+    membuffers = 0
+    for match in mem_matcher.findall(proc):
+        if match[0] == "MemTotal":
+            memtotal = int(match[1])
+        if match[0] == "MemFree":
+            memfree = int(match[1])
+        if match[0] == "Buffers":
+            membuffers = int(match[1])
+        if match[0] == "Cached":
+            memcached = int(match[1])
+    memused = memtotal - memfree - membuffers - memcached
+    memusage =  memused/memtotal
+
+    return "MemUsage: " + bar(memusage)
+
