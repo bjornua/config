@@ -41,7 +41,7 @@ set guioptions-=T guioptions-=m guioptions-=l guioptions-=r guioptions-=b
 " Strip the newline from the end of a string
 function! Chomp(str)
   let str = substitute(a:str, '\n$', '', '')
-  let str = substitute(a:str, ' ', '\\ ', '')
+  let str = substitute(a:str, ' ', '\\ ', 'g')
   return str
 endfunction
 
@@ -56,11 +56,12 @@ endfunction
 
 " Find a file and pass it to cmd
 function! DmenuOpenDir(cmd)
-  let fname = Chomp(system("find . -type d | grep -vP '\\/\\.(git|hg)(\\/|$)' | dmenu -i -l 20 -p " . a:cmd))
+  let fname = Chomp(system("find -type d -maxdepth 1 | grep -vP '\\/\\.(git|hg)(\\/|$)' | dmenu -i -l 20 -p " . a:cmd))
   if empty(fname)
     return
   endif
   execute a:cmd . " " . fname
+  call DmenuOpenDir(a:cmd)
 endfunction
 
 
