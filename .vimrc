@@ -9,7 +9,8 @@ set autoindent
 set autoread
 set background=dark
 set clipboard=unnamedplus,unnamed
-set guifont=Inconsolata\ Medium\ 13
+set expandtab
+set guifont=Inconsolata\ Medium\ 11
 set hidden
 set history=5000
 set hlsearch
@@ -30,10 +31,10 @@ set shiftwidth=4
 set showcmd
 set showmode
 set softtabstop=4
+set splitright
 set tabstop=8
 set wildmode=list:longest
 set wrap
-set expandtab
 syntax on
 set guioptions-=T guioptions-=m guioptions-=l guioptions-=r guioptions-=b
 

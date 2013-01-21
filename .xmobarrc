@@ -4,12 +4,12 @@ Config { font = "xft:Inconsolata-9:bold"
        , position = Top
        , commands = [ 
                       Run Weather "EKCH" 
-                                  ["-t"      , "EKCH: <tempC>°C"         , 
+                                  ["-t"      , "Outside: <tempC>°C"         , 
                                   "-L"       , "8"                     , 
                                   "-H"       , "20"                    , 
                                   "--high"   , "orange"                , 
                                   "--low"    , "lightblue"] 600
-                    , Run Network "wlan0" 
+                    , Run Network "eth0" 
                                   ["-L"      , "50"        , 
                                   "-H"       , "500"       , 
                                   "--normal" , "lightblue" , 
@@ -36,5 +36,5 @@ Config { font = "xft:Inconsolata-9:bold"
                    ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %EKCH% <fc=#555>|</fc> %multicpu% %coretemp% <fc=#555>|</fc> %memory% <fc=#555>|</fc> %wlan0% <fc=#555>|</fc> %battery% | <fc=white>%date%</fc>"
+       , template = "%StdinReader% }{ %EKCH% <fc=#555>|</fc> %multicpu% %coretemp% <fc=#555>|</fc> %memory% <fc=#555>|</fc> %eth0% <fc=#555>|</fc> %battery% | <fc=white>%date%</fc>"
 }
