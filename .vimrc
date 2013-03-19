@@ -48,7 +48,7 @@ endfunction
 
 " Find a file and pass it to cmd
 function! DmenuOpen(cmd)
-  let fname = Chomp(system("find . -type f | grep -vP '(\\/\\.git\\/|\\.(pyc|png|jpg|gif|ico)$)' | dmenu -i -l 20 -p " . a:cmd))
+  let fname = Chomp(system("find . -type f | grep -vP '(\\/\\.(git|hg)\\/|\\.(pyc|png|jpg|gif|ico|woff)$)' | dmenu -i -l 20 -p " . a:cmd))
   if empty(fname)
     return
   endif

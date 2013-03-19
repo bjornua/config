@@ -1,10 +1,10 @@
 #!/bin/sh
 declare -x PATH="/home/bjorn/bin:$PATH"
-autoscreen
-numlockx on
-[ -f .fehbg ] && source .fehbg
-pulseaudio --start --log-target=syslog
-urxvtd -q -f -o
+autoscreen 
+numlockx on &
+[ -f .fehbg ] && source .fehbg &
+[ -f .jackdrc ] && source .jackdrc &
+urxvtd -q -f -o &
 xcompmgr &
-xsetroot -cursor_name left_ptr
+xsetroot -cursor_name left_ptr &
 exec ssh-agent xmonad

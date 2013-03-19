@@ -66,6 +66,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch a terminal
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
+    -- brightneww up
+    , ((modm,               xK_a     ), spawn "xbacklight +10% -time 0")
+    -- brightneww down
+    , ((modm,               xK_z     ), spawn "xbacklight -10% -time 0")
     -- launch dmenu
     , ((modm,               xK_p     ), spawn "dmenu_run -p Open -l 30 -nf \"#FFF\" -nb \"#222\" -sb \"#050\"")
 
