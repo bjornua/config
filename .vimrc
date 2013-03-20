@@ -10,7 +10,7 @@ set autoread
 set background=dark
 set clipboard=unnamedplus,unnamed
 set expandtab
-set guifont=Inconsolata\ Medium\ 11
+set guifont=Inconsolata\ Medium\ 13
 set hidden
 set history=5000
 set hlsearch
@@ -18,7 +18,6 @@ set ignorecase
 set incsearch
 set linebreak
 set noautowrite
-set nobackup
 set nobackup
 set noerrorbells
 set noswapfile
@@ -48,7 +47,7 @@ endfunction
 
 " Find a file and pass it to cmd
 function! DmenuOpen(cmd)
-  let fname = Chomp(system("find . -type f | grep -vP '(\\/\\.git\\/|\\.(pyc|png|jpg|gif|ico)$)' | dmenu -i -l 20 -p " . a:cmd))
+  let fname = Chomp(system("find . -type f | grep -vP '(\\/\\.git\\/|\\.(pyc|png|jpg|gif|ico)$)' | sed 's|^\./||' | sort -V | dmenu -i -l 20 -p " . a:cmd))
   if empty(fname)
     return
   endif
@@ -57,7 +56,7 @@ endfunction
 
 " Find a file and pass it to cmd
 function! DmenuOpenDir(cmd)
-  let fname = Chomp(system("find -type d -maxdepth 1 | grep -vP '\\/\\.(git|hg)(\\/|$)' | dmenu -i -l 20 -p " . a:cmd))
+  let fname = Chomp(system("find -type d -maxdepth 1 | grep -vP '\\/\\.(git|hg)(\\/|$)' | sed 's|^\./||' | sort -V | dmenu -i -l 20 -p " . a:cmd))
   if empty(fname)
     return
   endif
