@@ -2,9 +2,9 @@ set nocompatible
 call pathogen#infect()
 colorscheme wombat
 inoremap <F5> <ESC>:g/^\s*$/d<CR>
-inoremap <F6> <ESC>:!urxvtc<CR><CR>
+inoremap <F6> <ESC>:!tmux new -d xterm<CR><CR>
 noremap  <F5> :g/^\s*$/d<CR>
-noremap  <F6> :!urxvtc<CR><CR>
+noremap  <F6> :!tmux new -d xterm<CR><CR>
 set autoindent
 set autoread
 set background=dark

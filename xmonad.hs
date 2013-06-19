@@ -25,7 +25,7 @@ import XMonad.Layout.Spacing (spacing)
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "/usr/bin/urxvtc"
+myTerminal      = "/usr/bin/xterm"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -71,7 +71,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- brightneww down
     , ((modm,               xK_z     ), spawn "xbacklight -10% -time 0")
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run -p Open -l 30 -nf \"#FFF\" -nb \"#222\" -sb \"#050\"")
+    , ((modm,               xK_p     ), spawn "dmenu_run -p Run -l 30 -nf \"#FFF\" -nb \"#222\" -sb \"#050\"")
 
     -- launch console
     , ((modm,               xK_o     ), spawn "console")
