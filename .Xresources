@@ -1,0 +1,5 @@
+*foreground: rgb:b2/b2/b2
+*background: rgb:08/08/08
+xterm*termName: xterm-256color
+XTerm*locale: true
+Xterm*saveLines: 16384
