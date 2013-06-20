@@ -13,6 +13,7 @@ import System.Exit
 
 
 import XMonad.Hooks.EwmhDesktops (ewmh,fullscreenEventHook)
+import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.DynamicLog (xmobar)
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -278,7 +279,7 @@ main = xmonad =<< xmobar defaults
 --
 -- No need to modify this.
 --
-defaults = ewmh $ defaultConfig {
+defaults = ewmh $ withUrgencyHook NoUrgencyHook $ defaultConfig {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,

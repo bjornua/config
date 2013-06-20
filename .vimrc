@@ -5,6 +5,7 @@ inoremap <F5> <ESC>:g/^\s*$/d<CR>
 inoremap <F6> <ESC>:!urxvtc<CR><CR>
 noremap  <F5> :g/^\s*$/d<CR>
 noremap  <F6> :!urxvtc<CR><CR>
+noremap  <F7> :!gvim<CR><CR>
 set autoindent
 set autoread
 set background=dark
@@ -47,7 +48,7 @@ endfunction
 
 " Find a file and pass it to cmd
 function! DmenuOpen(cmd)
-  let fname = Chomp(system("find . -type f | grep -vP '(\\/\\.(git|hg)\\/|\\.(pyc|png|jpg|gif|ico|woff)$)' | sed 's|^\./||' | sort -V | dmenu -i -l 20 -p " . a:cmd))
+  let fname = Chomp(system("find -xdev -type f | grep -vP '(\\/\\.(git|hg)\\/|\\.(pyc|png|jpg|gif|ico|woff)$)' | sed 's|^\./||' | sort -V | dmenu -i -l 20 -p " . a:cmd))
   if empty(fname)
     return
   endif
@@ -56,7 +57,7 @@ endfunction
 
 " Find a file and pass it to cmd
 function! DmenuOpenDir(cmd)
-  let fname = Chomp(system("find -type d -maxdepth 1 | grep -vP '\\/\\.(git|hg)(\\/|$)' | sed 's|^\./||' | sort -V | dmenu -i -l 20 -p " . a:cmd))
+  let fname = Chomp(system("find -xdev -type d -maxdepth 1 | grep -vP '\\/\\.(git|hg)(\\/|$)' | sed 's|^\./||' | sort -V | dmenu -i -l 20 -p " . a:cmd))
   if empty(fname)
     return
   endif
