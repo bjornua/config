@@ -1,0 +1,5 @@
+#!/bin/sh
+
+
+# Prefer HDMI over LVDS
+xrandr | grep -q "HDMI-0 connected" && xrandr --output LVDS --off --output HDMI-0 --auto
