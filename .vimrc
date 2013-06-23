@@ -12,7 +12,7 @@ set autoread
 set background=dark
 set clipboard=unnamedplus,unnamed
 set expandtab
-set guifont=Inconsolata\ Medium\ 13
+set guifont=Terminus\ 10
 set hidden
 set history=5000
 set hlsearch
