@@ -1,6 +1,7 @@
 alsa-utils
 atop
 dmenu
+evince
 feh
 firefox
 flashplugin
