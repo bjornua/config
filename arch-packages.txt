@@ -24,7 +24,7 @@ openssh
 p7zip
 php
 pidgin
-python2-vitualenv
+python2-virtualenv
 slim
 sudo
 terminus-font
