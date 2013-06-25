@@ -5,6 +5,7 @@ evince
 feh
 firefox
 flashplugin
+gimp
 git
 gpicview
 gvim
