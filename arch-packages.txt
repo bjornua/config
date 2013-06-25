@@ -14,6 +14,7 @@ lzop
 nodejs
 opendesktop-fonts
 openssh
+p7zip
 pidgin
 python2-vitualenv
 slim
