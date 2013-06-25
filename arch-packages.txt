@@ -13,10 +13,12 @@ lzop
 nodejs
 opendesktop-fonts
 openssh
+pidgin
 python2-vitualenv
 slim
 sudo
 terminus-font
+thunar
 tmux
 ttf-arphic-ukai
 ttf-arphic-uming
