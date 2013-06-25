@@ -3,6 +3,7 @@ atop
 dmenu
 evince
 feh
+file-roller
 firefox
 flashplugin
 gimp
@@ -10,13 +11,14 @@ git
 gpicview
 gvim
 htop
+lxappearance
 lzop
 nodejs
 opendesktop-fonts
 openssh
 p7zip
 pidgin
-python2-vitualenv
+python2-virtualenv
 slim
 sudo
 terminus-font
