@@ -7,6 +7,9 @@ noremap  <F7> <ESC>:!gvim<CR><CR>
 noremap  <F5> :g/^\s*$/d<CR>
 noremap  <F6> :!tmux new -d xterm<CR><CR>
 noremap  <F7> :!gvim<CR><CR>
+noremap <C-Right>   :MBEbn<CR>
+noremap <C-Left> :MBEbp<CR>
+let g:miniBufExplBuffersNeeded = 1
 set autoindent
 set autoread
 set background=dark
@@ -20,6 +23,7 @@ set ignorecase
 set incsearch
 set linebreak
 set noautowrite
+set switchbuf=usetab
 set nobackup
 set noerrorbells
 set noswapfile
@@ -66,6 +70,5 @@ function! DmenuOpenDir(cmd)
   call DmenuOpenDir(a:cmd)
 endfunction
 
-
-map <c-f> :call DmenuOpen("e")<cr>
+map <c-f> :call DmenuOpen("edit")<cr>
 map <c-d> :call DmenuOpenDir("chdir")<cr>
