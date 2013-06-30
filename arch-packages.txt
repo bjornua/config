@@ -111,3 +111,5 @@ xorg-server-utils
 xterm
 zip
 zsh
+mplayer
+xorg-xcalc
