@@ -2,7 +2,7 @@
 declare -x PATH="/home/bjorn/bin:$PATH"
 autoscreen 
 setxkbmap -option 'compose:caps'
-numlockx on &
+#numlockx on &
 [ -f .fehbg ] && source .fehbg &
 [ -f .jackdrc ] && source .jackdrc &
 xsetroot -cursor_name left_ptr &
